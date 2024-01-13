@@ -25,8 +25,6 @@ function routeByHosts(host) {
 
 async function handleRequest(request) {
   const url = new URL(request.url);
-  console.log('headers',JSON.stringify([...request.headers]));
-  console.log('Authorization',request.headers['Authorization']);
   
 
   const upstream = routeByHosts(url.hostname);
@@ -41,7 +39,7 @@ async function handleRequest(request) {
     );
   }
   // check if need to authenticate
-  if (url.pathname == "/v2/" && !request.headers['Authorization']) {
+  if (url.pathname == "/v2/" && !request.headers['authorization']) {
     const newUrl = new URL(upstream + "/v2/");
     const resp = await fetch(newUrl.toString(), {
       method: "GET",
