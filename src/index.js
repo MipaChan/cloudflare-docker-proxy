@@ -1,4 +1,5 @@
 addEventListener("fetch", (event) => {
+  console.log(JSON.stringify(event))
   event.passThroughOnException();
   event.respondWith(handleRequest(event.request));
 });
