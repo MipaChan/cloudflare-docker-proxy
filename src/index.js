@@ -95,6 +95,7 @@ async function handleRequest(request) {
     headers: request.headers,
     redirect: "follow",
   });
+  console.log(JSON.stringify(newReq));
   return await fetch(newReq);
 }
 
