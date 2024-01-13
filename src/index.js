@@ -26,6 +26,8 @@ function routeByHosts(host) {
 async function handleRequest(request) {
   const url = new URL(request.url);
   
+  console.log('headers',JSON.stringify([...request.headers]));
+  console.log('Authorization',request.headers['authorization']);
 
   const upstream = routeByHosts(url.hostname);
   if (upstream === "") {
