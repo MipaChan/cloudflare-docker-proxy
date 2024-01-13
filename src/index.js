@@ -25,7 +25,9 @@ function routeByHosts(host) {
 
 async function handleRequest(request) {
   const url = new URL(request.url);
-  console.log(new Map(request.headers));
+  console.log(JSON.stringify([...request.headers]););
+  console.log(request.headers['Authorization']);
+  
 
   const upstream = routeByHosts(url.hostname);
   if (upstream === "") {
@@ -86,17 +88,11 @@ async function handleRequest(request) {
   // }
   // // foward requests
   const newUrl = new URL(upstream + url.pathname);
-  console.log(JSON.stringify({
-    method: request.method,
-    headers: request.headers,
-    redirect: "follow",
-  }));
   const newReq = new Request(newUrl, {
     method: request.method,
     headers: request.headers,
     redirect: "follow",
   });
-  console.log(JSON.stringify(newReq));
   return await fetch(newReq);
 }
 
