@@ -37,7 +37,7 @@ async function handleRequest(request) {
     );
   }
   // check if need to authenticate
-  if (url.pathname == "/v2/") {
+  if (url.pathname == "/v2/" && !request.headers['Authorization']) {
     const newUrl = new URL(upstream + "/v2/");
     const resp = await fetch(newUrl.toString(), {
       method: "GET",
