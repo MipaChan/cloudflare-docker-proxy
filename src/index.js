@@ -25,7 +25,7 @@ function routeByHosts(host) {
 
 async function handleRequest(request) {
   const url = new URL(request.url);
-  console.log(JSON.stringify(request));
+  console.log(JSON.stringify(request.headers));
   const upstream = routeByHosts(url.hostname);
   if (upstream === "") {
     return new Response(
