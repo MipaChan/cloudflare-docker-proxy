@@ -1,5 +1,4 @@
 addEventListener("fetch", (event) => {
-  console.log(JSON.stringify(event))
   event.passThroughOnException();
   event.respondWith(handleRequest(event.request));
 });
@@ -26,7 +25,8 @@ function routeByHosts(host) {
 
 async function handleRequest(request) {
   const url = new URL(request.url);
-  console.log(JSON.stringify(request.headers));
+  console.log(new Map(request.headers));
+
   const upstream = routeByHosts(url.hostname);
   if (upstream === "") {
     return new Response(
