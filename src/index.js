@@ -85,6 +85,11 @@ async function handleRequest(request) {
   // }
   // // foward requests
   const newUrl = new URL(upstream + url.pathname);
+  console.log(JSON.stringify({
+    method: request.method,
+    headers: request.headers,
+    redirect: "follow",
+  }));
   const newReq = new Request(newUrl, {
     method: request.method,
     headers: request.headers,
