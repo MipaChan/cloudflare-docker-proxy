@@ -49,12 +49,12 @@ async function handleRequest(request) {
       if (MODE == "debug") {
         headers.set(
           "Www-Authenticate",
-          `Bearer realm="${LOCAL_ADDRESS}/v2/auth",service="ghcr.io"`
+          `Bearer realm="${LOCAL_ADDRESS}/auth",service="ghcr.io"`
         );
       } else {
         headers.set(
           "Www-Authenticate",
-          `Bearer realm="https://${url.hostname}/v2/auth",service="ghcr.io"`
+          `Bearer realm="https://${url.hostname}/auth",service="ghcr.io"`
         );
       }
       return new Response(JSON.stringify({ message: "UNAUTHORIZED" }), {
